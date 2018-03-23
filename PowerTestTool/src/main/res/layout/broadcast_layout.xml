@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请输入广播名称"/>
+
+    <EditText
+        android:id="@+id/broadcast_name_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="com.meizu.powertesttool"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请输入广播发送频率（秒）"
+        />
+
+    <EditText
+        android:id="@+id/broadcast_period_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="10"/>
+    <Button
+        android:id="@+id/broadcast_send_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发送"/>
+
+    <Button
+        android:id="@+id/broadcast_time_set"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TIME_SET"/>
+
+    <Button
+        android:id="@+id/broadcast_wifi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Wifi"/>
+
+    <Button
+        android:id="@+id/broadcast_modem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Modem"/>
+
+    <Button
+        android:id="@+id/broadcast_screen_on"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="开屏"/>
+
+    <Button
+        android:id="@+id/broadcast_gps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="GPS"/>
+
+    <Button
+        android:id="@+id/broadcast_battery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="电量跳变"/>
+
+</LinearLayout>

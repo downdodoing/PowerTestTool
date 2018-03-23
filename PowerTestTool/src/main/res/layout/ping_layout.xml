@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/ping_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ping的地址"/>
+
+    <EditText
+        android:id="@+id/ping_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="次数"/>
+
+    <EditText
+        android:id="@+id/ping_period"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="周期(分钟)"/>
+
+    <Button
+        android:id="@+id/send_ping"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发送"/>
+
+</LinearLayout>

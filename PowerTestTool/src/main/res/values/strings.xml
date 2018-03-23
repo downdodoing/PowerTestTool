@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">PowerTestTool</string>
+    <string name="system_not_wake">系统不休眠</string>
+    <string name="wifi_scan_per10">每10秒触发一次wifi的扫描</string>
+    <string name="screen_always_on">屏幕常亮</string>
+    <string name="wake_up_system_period">周期唤醒</string>
+    <string name="full_wake_lock">保持屏幕全亮、键盘背光灯点亮和CPU运行</string>
+    <string name="screen_bright_wake_lock">保持屏幕全亮和CPU运行</string>
+    <string name="screen_dim_wake_lock"> 保持屏幕开启（但是让它变暗）和CPU运行</string>
+    <string name="partial_wake_lock">保持CPU运行</string>
+    <string name="rainbow_color">彩虹颜色</string>
+    <string name="alarm_test">alarm test</string>
+    <string name="broadcast_sender">广播测试</string>
+    <string name="sensor_test">Sensor测试</string>
+    <string name="notification_worker">呼吸灯测试</string>
+    <string name="switch_animation">动画切换</string>
+    <string name="luncher_app">启动app</string>
+    <string name="ping_network">ping网络</string>
+    <string name="power_display">耗电显示</string>
+    <string name="power_data_update">更新省电数据库</string>
+    <string name="high_cpu_load">高负载CPU</string>
+    <string name="gps_listener">gps监听</string>
+    <string name="scan_blueTooth">扫描蓝牙设备</string>
+</resources>
