@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
@@ -18,6 +19,9 @@ import com.meizu.powertesttool.R;
 import com.meizu.powertesttool.downloadTest.Service.DownloadService;
 
 public class UnInterruptedDownloadActivity extends Activity implements CompoundButton.OnCheckedChangeListener {
+
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
 
     private UnInterruptedDownloadActivity activity;
 
@@ -52,6 +56,7 @@ public class UnInterruptedDownloadActivity extends Activity implements CompoundB
         activity = this;
 
         Intent intent = new Intent(activity, DownloadService.class);
+        startService(intent);
         bindService(intent, mServiceConnection, BIND_AUTO_CREATE);
 
         mRadioButton50 = findViewById(R.id.download_radioButton);
@@ -61,6 +66,21 @@ public class UnInterruptedDownloadActivity extends Activity implements CompoundB
         mRadioButton50.setOnCheckedChangeListener(this);
         mRadioButton100.setOnCheckedChangeListener(this);
         mRadioButton1M.setOnCheckedChangeListener(this);
+
+        mSharedPreferences = getSharedPreferences("radioBnt", MODE_PRIVATE);
+        mEditor = mSharedPreferences.edit();
+
+        initRadioBnt(mSharedPreferences.getString("radioBnt", "third"));
+    }
+
+    private void initRadioBnt(String which) {
+        if ("first".equals(which)) {
+            mRadioButton50.setChecked(true);
+        } else if ("second".equals(which)) {
+            mRadioButton100.setChecked(true);
+        } else {
+            mRadioButton1M.setChecked(true);
+        }
     }
 
     public void bntClick(View view) {
@@ -90,23 +110,27 @@ public class UnInterruptedDownloadActivity extends Activity implements CompoundB
                 isChecked50 = isChecked;
                 if (isChecked) {
                     DownloadTask.mPerLengthSeconds = 50;
+                    mEditor.putString("radioBnt", "first");
                 }
                 break;
             case R.id.download_radioButton1:
                 isChecked100 = isChecked;
                 if (isChecked) {
                     DownloadTask.mPerLengthSeconds = 100;
+                    mEditor.putString("radioBnt", "second");
                 }
                 break;
             case R.id.download_radioButton2:
                 isChecked1M = isChecked;
                 if (isChecked) {
                     DownloadTask.mPerLengthSeconds = 1024;
+                    mEditor.putString("radioBnt", "third");
                 }
                 break;
             default:
                 break;
         }
+        mEditor.commit();
     }
 
     @Override

@@ -20,6 +20,7 @@ import java.io.File;
 public class DownloadService extends Service {
     private DownloadTask mDownloadTask;
     private String downloadUrl;
+    private boolean isPaused;
     public static final String TAG = "DownloadService";
 
     private IDownloadListener mListener = new IDownloadListener() {
@@ -36,6 +37,7 @@ public class DownloadService extends Service {
             getNotificationManager().notify(1, getNotifaction("下载成功", -1));
 
             showToast("下载成功");
+
             //当下载成功后重新进行下载使下载的过程能够不断的被继续
             mDownloadTask = new DownloadTask(mListener);
             mDownloadTask.execute(downloadUrl);
@@ -46,14 +48,14 @@ public class DownloadService extends Service {
         public void onFailed() {
             mDownloadTask = null;
             stopForeground(true);
-            //deleteFile();
             getNotificationManager().notify(1, getNotifaction("下载失败", -1));
             showToast("下载失败");
         }
 
         @Override
         public void onPause() {
-            mDownloadTask = null;
+            //mDownloadTask = null;
+            isPaused = true;
             showToast("暂停下载");
         }
 
@@ -81,9 +83,10 @@ public class DownloadService extends Service {
     private Notification getNotifaction(String title, int progress) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setSmallIcon(R.mipmap.ic_launcher);
-        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
+        //builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
         builder.setContentTitle(title);
         builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+        builder.setVisibility(Notification.VISIBILITY_PUBLIC);
         if (progress > 0) {
             builder.setContentText(progress + "%");
             builder.setProgress(100, progress, true);
@@ -102,12 +105,14 @@ public class DownloadService extends Service {
 
     public class DownloadBinder extends Binder {
         public void startDownload(String url) {
-            if (null == mDownloadTask) {
+            if (null == mDownloadTask || isPaused) {
                 downloadUrl = url;
                 mDownloadTask = new DownloadTask(mListener);
                 mDownloadTask.execute(downloadUrl);
                 startForeground(1, getNotifaction("开始下载", 0));
                 showToast("开始下载");
+            } else {
+                showToast("正在下载");
             }
         }
 

@@ -1,6 +1,5 @@
 package com.meizu.powertesttool.downloadTest;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;

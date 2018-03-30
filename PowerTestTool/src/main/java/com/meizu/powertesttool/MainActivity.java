@@ -35,6 +35,7 @@ public class MainActivity extends Activity {
     private List<IWorker> mWorkers;
     private ListView mWorkerListView;
     private WorkerAdapter mWorkerAdapter;
+    private BroadcastReceiver mReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,8 +106,8 @@ public class MainActivity extends Activity {
                     startActivity(new Intent(MainActivity.this, GpsListenerActivity.class));
                 } else if (position == 16) {
                     //startActivity(new Intent(MainActivity.this, BluetoothActivity.class));
+                    mReceiver = new BlueToothBroadcastReceiver();
                     scanBluetooth();
-
                 } else if (position == 17) {
                     startActivity(new Intent(MainActivity.this, UnInterruptedDownloadActivity.class));
                 }
@@ -120,19 +121,6 @@ public class MainActivity extends Activity {
 
         mWorkerListView.setAdapter(mWorkerAdapter);
     }
-
-    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                String name = device.getName();
-                String address = device.getAddress();
-                Toast.makeText(MainActivity.this, name + "-----------" + address, Toast.LENGTH_SHORT).show();
-                Log.i("设备名称", device.getName() + "-----------" + device.getAddress());
-            }
-        }
-    };
 
     private void scanBluetooth() {
         Toast.makeText(MainActivity.this, "开始扫描蓝牙设备", Toast.LENGTH_SHORT).show();
@@ -157,6 +145,23 @@ public class MainActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(mReceiver);
+        if (null != mReceiver) {
+            unregisterReceiver(mReceiver);
+            mReceiver = null;
+        }
+    }
+
+    class BlueToothBroadcastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                String name = device.getName();
+                String address = device.getAddress();
+                Toast.makeText(MainActivity.this, name + "-----------" + address, Toast.LENGTH_SHORT).show();
+                Log.i("设备名称", device.getName() + "-----------" + device.getAddress());
+            }
+        }
     }
 }
