@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.meizu.powertesttool.bluetoothTest.BluetoothActivity;
 import com.meizu.powertesttool.broadcasttest.BroadcastActivity;
 import com.meizu.powertesttool.cpuload.HighCpuloadActivity;
+import com.meizu.powertesttool.downloadTest.UnInterruptedDownloadActivity;
 import com.meizu.powertesttool.gps.GpsListenerActivity;
 import com.meizu.powertesttool.pingtest.PingActivity;
 import com.meizu.powertesttool.powerdisplay.ui.PowerDisplayBarChart;
@@ -106,6 +107,8 @@ public class MainActivity extends Activity {
                     //startActivity(new Intent(MainActivity.this, BluetoothActivity.class));
                     scanBluetooth();
 
+                } else if (position == 17) {
+                    startActivity(new Intent(MainActivity.this, UnInterruptedDownloadActivity.class));
                 }
                 if (isWork) {
                     worker.doWork();

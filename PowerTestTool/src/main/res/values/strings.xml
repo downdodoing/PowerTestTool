@@ -21,4 +21,5 @@
     <string name="high_cpu_load">高负载CPU</string>
     <string name="gps_listener">gps监听</string>
     <string name="scan_blueTooth">扫描蓝牙设备</string>
+    <string name="download_not_stop">后台不间断下载</string>
 </resources>

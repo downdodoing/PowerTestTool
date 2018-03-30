@@ -10,6 +10,7 @@ import com.meizu.powertesttool.alwayswakeup.WakeUpWorker;
 import com.meizu.powertesttool.bluetoothTest.BlueToothWorker;
 import com.meizu.powertesttool.broadcasttest.BroadcastWorker;
 import com.meizu.powertesttool.cpuload.HighCpuloadWorker;
+import com.meizu.powertesttool.downloadTest.UninterruptedDownloadWorker;
 import com.meizu.powertesttool.gps.GpsListenerWorker;
 import com.meizu.powertesttool.luncherOtherApp.LuncherWorker;
 import com.meizu.powertesttool.notification.NotificationWorker;
@@ -65,12 +66,12 @@ public class WorkService extends Service {
                 new BroadcastWorker(WorkService.this), new SensorWorker(WorkService.this), new NotificationWorker(WorkService.this),
                 new SwitchAnimationWorker(WorkService.this), new LuncherWorker(WorkService.this), new PingWorker(WorkService.this),
                 new PowerWorker(WorkService.this), new UpdateWorker(WorkService.this), new HighCpuloadWorker(WorkService.this), new GpsListenerWorker(WorkService.this),
-                new BlueToothWorker(WorkService.this)
-                };
+                new BlueToothWorker(WorkService.this), new UninterruptedDownloadWorker(WorkService.this)
+        };
 
         mWorkerManager = WorkerManager.getInstance();
 
-        for(IWorker worker : mWorkers) {
+        for (IWorker worker : mWorkers) {
             mWorkerManager.addToPipeLine(worker);
         }
 
@@ -92,7 +93,7 @@ public class WorkService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         flags = START_STICKY;
-        return super.onStartCommand(intent,flags, startId);
+        return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
