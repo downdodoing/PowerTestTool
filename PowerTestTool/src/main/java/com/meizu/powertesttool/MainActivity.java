@@ -18,11 +18,14 @@ import com.meizu.powertesttool.broadcasttest.BroadcastActivity;
 import com.meizu.powertesttool.cpuload.HighCpuloadActivity;
 import com.meizu.powertesttool.downloadTest.UnInterruptedDownloadActivity;
 import com.meizu.powertesttool.gps.GpsListenerActivity;
+import com.meizu.powertesttool.musicPlay.MusicPlayActivity;
 import com.meizu.powertesttool.pingtest.PingActivity;
 import com.meizu.powertesttool.powerdisplay.ui.PowerDisplayBarChart;
 import com.meizu.powertesttool.rainbowcolor.RainbowActivity;
 import com.meizu.powertesttool.sensor.SensorActivity;
 import com.meizu.powertesttool.switchanimation.SwitchAnimationActivity;
+import com.meizu.powertesttool.unInterruptAwake.UnInterruptAwakeActivity;
+import com.meizu.powertesttool.unInterruptAwake.UnInterruptAwakeWorker;
 import com.meizu.powertesttool.wakeupperoid.WakeUpPeroidWorker;
 import com.meizu.powertesttool.woker.IWorker;
 
@@ -110,6 +113,10 @@ public class MainActivity extends Activity {
                     scanBluetooth();
                 } else if (position == 17) {
                     startActivity(new Intent(MainActivity.this, UnInterruptedDownloadActivity.class));
+                } else if (position == 18) {
+                    startActivity(new Intent(MainActivity.this, MusicPlayActivity.class));
+                } else if (position == 19) {
+                    startActivity(new Intent(MainActivity.this, UnInterruptAwakeActivity.class));
                 }
                 if (isWork) {
                     worker.doWork();

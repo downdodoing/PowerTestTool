@@ -23,6 +23,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -77,9 +78,29 @@
         <activity android:name=".downloadTest.UnInterruptedDownloadActivity" />
 
         <service
-            android:name=".downloadTest.Service.DownloadService"
+            android:name=".downloadTest.service.DownloadService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <activity android:name=".musicPlay.MusicPlayActivity" />
+
+        <service
+            android:name=".musicPlay.service.MusicPlayService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".unInterruptAwake.UnInterruptAwakeActivity" />
+
+        <service
+            android:name=".unInterruptAwake.service.UnInterruptAwakeService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <receiver
+            android:name=".unInterruptAwake.JobSchedulerReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
     </application>
 
 </manifest>

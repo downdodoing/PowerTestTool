@@ -1,10 +1,9 @@
-package com.meizu.powertesttool.downloadTest.Service;
+package com.meizu.powertesttool.downloadTest.service;
 
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.os.Binder;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;

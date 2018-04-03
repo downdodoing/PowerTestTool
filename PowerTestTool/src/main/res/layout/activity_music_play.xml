@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/start_bnt"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginRight="30dp"
+            android:gravity="center"
+            android:minWidth="80dp"
+            android:onClick="clickbnt"
+            android:text="开始"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/pause_bnt"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:onClick="clickbnt"
+            android:text="暂停"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/stop_bnt"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:gravity="center"
+            android:onClick="clickbnt"
+            android:text="停止"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp">
+
+        <RadioButton
+            android:id="@+id/radiobnt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="有声音" />
+
+        <RadioButton
+            android:id="@+id/silent_radiobnt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="无声音" />
+
+        <RadioButton
+            android:id="@+id/soundless_track_radiobnt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="无音轨" />
+    </RadioGroup>
+</LinearLayout>

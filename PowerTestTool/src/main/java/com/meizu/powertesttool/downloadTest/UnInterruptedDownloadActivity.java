@@ -7,16 +7,13 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.meizu.powertesttool.R;
-import com.meizu.powertesttool.downloadTest.Service.DownloadService;
+import com.meizu.powertesttool.downloadTest.service.DownloadService;
 
 public class UnInterruptedDownloadActivity extends Activity implements CompoundButton.OnCheckedChangeListener {
 

@@ -13,6 +13,7 @@ import com.meizu.powertesttool.cpuload.HighCpuloadWorker;
 import com.meizu.powertesttool.downloadTest.UninterruptedDownloadWorker;
 import com.meizu.powertesttool.gps.GpsListenerWorker;
 import com.meizu.powertesttool.luncherOtherApp.LuncherWorker;
+import com.meizu.powertesttool.musicPlay.MusicPlayWorker;
 import com.meizu.powertesttool.notification.NotificationWorker;
 import com.meizu.powertesttool.pingtest.PingWorker;
 import com.meizu.powertesttool.powerdataupdate.UpdateWorker;
@@ -24,6 +25,7 @@ import com.meizu.powertesttool.switchanimation.SwitchAnimationWorker;
 import com.meizu.powertesttool.wakeupperoid.WakeUpPeroidWorker;
 import com.meizu.powertesttool.wifiscan.WifiWorker;
 import com.meizu.powertesttool.woker.IWorker;
+import com.meizu.powertesttool.unInterruptAwake.UnInterruptAwakeWorker;
 
 
 public class WorkService extends Service {
@@ -66,7 +68,8 @@ public class WorkService extends Service {
                 new BroadcastWorker(WorkService.this), new SensorWorker(WorkService.this), new NotificationWorker(WorkService.this),
                 new SwitchAnimationWorker(WorkService.this), new LuncherWorker(WorkService.this), new PingWorker(WorkService.this),
                 new PowerWorker(WorkService.this), new UpdateWorker(WorkService.this), new HighCpuloadWorker(WorkService.this), new GpsListenerWorker(WorkService.this),
-                new BlueToothWorker(WorkService.this), new UninterruptedDownloadWorker(WorkService.this)
+                new BlueToothWorker(WorkService.this), new UninterruptedDownloadWorker(WorkService.this), new MusicPlayWorker(WorkService.this),
+                new UnInterruptAwakeWorker(WorkService.this)
         };
 
         mWorkerManager = WorkerManager.getInstance();
