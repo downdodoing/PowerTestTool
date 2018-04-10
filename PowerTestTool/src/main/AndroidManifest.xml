@@ -24,6 +24,8 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
 
     <application
         android:allowBackup="true"
@@ -92,15 +94,54 @@
         <activity android:name=".unInterruptAwake.UnInterruptAwakeActivity" />
 
         <service
-            android:name=".unInterruptAwake.service.UnInterruptAwakeService"
+            android:name=".unInterruptAwake.jobScheduler.service.UnInterruptAwakeService"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <receiver
-            android:name=".unInterruptAwake.JobSchedulerReceiver"
+            android:name=".unInterruptAwake.jobScheduler.JobSchedulerReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
+
+        <service
+            android:name=".unInterruptAwake.syncmanger.AuthenticatorService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
+        </service>
+
+        <provider
+            android:name=".unInterruptAwake.syncmanger.StubContentProvider"
+            android:authorities="com.meizu.powertestTool.content"
+            android:enabled="true"
+            android:exported="true"
+            android:syncable="true" />
+
+        <service
+            android:name=".unInterruptAwake.syncmanger.SyncService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/syncadapter" />
+        </service>
+
+        <receiver
+            android:name=".unInterruptAwake.syncmanger.SyncMangerReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
     </application>
 
 </manifest>

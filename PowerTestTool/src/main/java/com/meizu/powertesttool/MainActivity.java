@@ -1,5 +1,6 @@
 package com.meizu.powertesttool;
 
+import android.Manifest;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -7,7 +8,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.nfc.Tag;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
@@ -130,7 +134,12 @@ public class MainActivity extends Activity {
     }
 
     private void scanBluetooth() {
-        Toast.makeText(MainActivity.this, "开始扫描蓝牙设备", Toast.LENGTH_SHORT).show();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (this.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 0xb01);
+            }
+        }
 
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         registerReceiver(mReceiver, filter);
@@ -147,6 +156,7 @@ public class MainActivity extends Activity {
         startActivity(discoveryIntent);
         //开始扫描其他蓝牙设备
         bluetoothAdapter.startDiscovery();
+        Toast.makeText(MainActivity.this, "开始扫描蓝牙设备", Toast.LENGTH_SHORT).show();
     }
 
     @Override

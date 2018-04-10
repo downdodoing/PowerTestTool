@@ -48,6 +48,7 @@ public class DownloadService extends Service {
             mDownloadTask = null;
             stopForeground(true);
             getNotificationManager().notify(1, getNotifaction("下载失败", -1));
+            deleteFile();
             showToast("下载失败");
         }
 

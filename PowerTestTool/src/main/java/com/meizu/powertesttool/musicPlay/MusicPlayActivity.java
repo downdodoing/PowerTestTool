@@ -7,6 +7,7 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -33,6 +34,7 @@ public class MusicPlayActivity extends Activity implements CompoundButton.OnChec
             mBinder = (MusicPlayService.MusicPlayBinder) service;
             //设置默认播放哪种声音
             mBinder.setWhichWayPlay("radiobnt");
+            Log.i("onServiceConnected", "onServiceConnected: ");
         }
 
         @Override
@@ -65,6 +67,10 @@ public class MusicPlayActivity extends Activity implements CompoundButton.OnChec
         mRadioButton.setOnCheckedChangeListener(this);
         mSilentPlay.setOnCheckedChangeListener(this);
         mSoundlessTrack.setOnCheckedChangeListener(this);
+
+        if (!MusicPlayService.isStop) {
+            mStartBnt.setText("正在播放");
+        }
     }
 
     public void clickbnt(View view) {
@@ -130,6 +136,6 @@ public class MusicPlayActivity extends Activity implements CompoundButton.OnChec
     protected void onDestroy() {
         super.onDestroy();
         unbindService(cnn);
-        stopService(new Intent(this, MusicPlayService.class));
+        //stopService(new Intent(this, MusicPlayService.class));
     }
 }

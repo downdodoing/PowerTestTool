@@ -90,6 +90,12 @@ public class MusicPlayService extends Service implements MediaPlayer.OnCompletio
 
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG, "onDestroy: ");
+    }
+
     private void showToast(String message) {
         Toast.makeText(MusicPlayService.this, message, Toast.LENGTH_SHORT).show();
     }

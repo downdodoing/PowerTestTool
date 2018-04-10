@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".unInterruptAwake.UnInterruptAwakeActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -53,4 +55,13 @@
             android:onClick="clickBnt"
             android:text="jobschedule" />
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/log"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:text="djaksjdk"
+        android:textSize="18sp" />
 </LinearLayout>
