@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.meizu.powertesttool.IPC.IPCWorker;
 import com.meizu.powertesttool.alarmtest.AlarmTest;
 import com.meizu.powertesttool.alwayswakeup.WakeUpWorker;
 import com.meizu.powertesttool.bluetoothTest.BlueToothWorker;
@@ -69,7 +70,7 @@ public class WorkService extends Service {
                 new SwitchAnimationWorker(WorkService.this), new LuncherWorker(WorkService.this), new PingWorker(WorkService.this),
                 new PowerWorker(WorkService.this), new UpdateWorker(WorkService.this), new HighCpuloadWorker(WorkService.this), new GpsListenerWorker(WorkService.this),
                 new BlueToothWorker(WorkService.this), new UninterruptedDownloadWorker(WorkService.this), new MusicPlayWorker(WorkService.this),
-                new UnInterruptAwakeWorker(WorkService.this)
+                new UnInterruptAwakeWorker(WorkService.this), new IPCWorker(WorkService.this)
         };
 
         mWorkerManager = WorkerManager.getInstance();

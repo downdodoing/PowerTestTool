@@ -17,6 +17,7 @@ import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.meizu.powertesttool.IPC.IPCServerActivity;
 import com.meizu.powertesttool.bluetoothTest.BluetoothActivity;
 import com.meizu.powertesttool.broadcasttest.BroadcastActivity;
 import com.meizu.powertesttool.cpuload.HighCpuloadActivity;
@@ -121,6 +122,8 @@ public class MainActivity extends Activity {
                     startActivity(new Intent(MainActivity.this, MusicPlayActivity.class));
                 } else if (position == 19) {
                     startActivity(new Intent(MainActivity.this, UnInterruptAwakeActivity.class));
+                } else if (position == 20) {
+                    startActivity(new Intent(MainActivity.this, IPCServerActivity.class));
                 }
                 if (isWork) {
                     worker.doWork();

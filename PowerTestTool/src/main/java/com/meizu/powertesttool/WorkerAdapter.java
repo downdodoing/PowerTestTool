@@ -73,7 +73,8 @@ public class WorkerAdapter extends BaseAdapter {
         vh.itemTitle.setText(mData.get(position).getWorkerName());
 
         if (position == 4 || position == 6 || position == 7 || position == 9 || position == 11 ||
-                position == 12 || position == 14 || position == 15 || position == 16 || position == 17 || position == 18 || position == 19) {
+                position == 12 || position == 14 || position == 15 || position == 16 || position == 17
+                || position == 18 || position == 19 || position == 20) {
             vh.itemSwitch.setVisibility(View.GONE);
             vh.itemButton.setVisibility(View.VISIBLE);
             vh.itemButton.setOnClickListener(new ButtonClickListener(position));
