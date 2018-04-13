@@ -151,7 +151,36 @@
 
         <activity
             android:name=".IPC.ClientActivity"
-            android:process=":remote"></activity>
+            android:process=":remote" />
+        <activity
+            android:name=".IPC.Client2Activity"
+            android:process=":remoteone" />
+        <activity
+            android:name=".IPC.Client3Activity"
+            android:process=":remotetwo" />
+        <activity
+            android:name=".IPC.Client4Activity"
+            android:process=":remotethree" />
+        <activity
+            android:name=".IPC.Client5Activity"
+            android:process=":remotefour" />
+
+        <service
+            android:name=".IPC.service.ClientService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".IPC.service.Client2Service"
+            android:enabled="true"
+            android:exported="true"></service>
+        <service
+            android:name=".IPC.service.Client3Service"
+            android:enabled="true"
+            android:exported="true"></service>
+        <service
+            android:name=".IPC.service.Client4Service"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

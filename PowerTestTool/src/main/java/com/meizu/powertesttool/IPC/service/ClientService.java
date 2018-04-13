@@ -11,15 +11,23 @@ import com.meizu.powertesttool.IPC.Student;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServerService extends Service {
+public class ClientService extends Service {
     private List<Student> mStudents = new ArrayList<>();
 
-    public ServerService() {
+    public ClientService() {
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
+        for (int i = 0; i < 2; i++) {
+            Student stu = new Student();
+            stu.sname = "ClientStudent" + i;
+            stu.age = 20 + i;
+            stu.sex = "男";
+            stu.sno = i;
+            mStudents.add(stu);
+        }
     }
 
     @Override

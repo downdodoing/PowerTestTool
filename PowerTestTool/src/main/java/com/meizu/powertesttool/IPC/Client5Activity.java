@@ -10,16 +10,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
-import com.meizu.powertesttool.IPC.service.ServerService;
+import com.meizu.powertesttool.IPC.service.Client3Service;
+import com.meizu.powertesttool.IPC.service.Client4Service;
 import com.meizu.powertesttool.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientActivity extends Activity {
+public class Client5Activity extends Activity {
+
     private IMyService mIMyService;
     List<Student> mStudent = new ArrayList<>();
 
@@ -36,6 +37,15 @@ public class ClientActivity extends Activity {
         }
     };
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_client5);
+
+        Intent intent = new Intent(this, Client4Service.class);
+        bindService(intent, cnn, BIND_AUTO_CREATE);
+    }
+
     public void showData(List<Student> students) {
         for (int i = 0; i < students.size(); i++) {
             Student student = students.get(i);
@@ -43,28 +53,9 @@ public class ClientActivity extends Activity {
         }
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_client);
-
-        Intent intent = new Intent(ClientActivity.this, ServerService.class);
-        bindService(intent, cnn, BIND_AUTO_CREATE);
-
-        Button goToNext = findViewById(R.id.goto_next);
-        goToNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("setOnClickListener", "onClick: ");
-                Intent intent = new Intent(ClientActivity.this, Client2Activity.class);
-                startActivity(intent);
-            }
-        });
-    }
-
     public void bntClick(View view) {
         switch (view.getId()) {
-            case R.id.getdata:
+            case R.id.getData:
                 try {
                     mStudent = mIMyService.getStudent();
                     showData(mStudent);
@@ -72,22 +63,7 @@ public class ClientActivity extends Activity {
                     e.printStackTrace();
                 }
                 break;
-            case R.id.adddata:
-                Log.i("setOnClickListener", "onClick: ");
-                Student student = new Student();
-                student.age = 10;
-                student.sname = "小明";
-                student.sno = 22222;
-                student.sex = "女";
-                try {
-                    mIMyService.addStudent(student);
-                    Toast.makeText(this, "增加成功", Toast.LENGTH_SHORT).show();
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
-                break;
         }
-
     }
 
     @Override

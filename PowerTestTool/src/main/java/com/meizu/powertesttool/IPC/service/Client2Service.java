@@ -11,10 +11,10 @@ import com.meizu.powertesttool.IPC.Student;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServerService extends Service {
+public class Client2Service extends Service {
     private List<Student> mStudents = new ArrayList<>();
 
-    public ServerService() {
+    public Client2Service() {
     }
 
     @Override
